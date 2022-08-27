@@ -91,6 +91,9 @@
 
 import * as THREE from "three";
 import { createUnparsedSourceFile } from "typescript";
+import { OrbitControls } from "./node_modules/three/examples/jsm/controls/OrbitControls.js";
+
+// console.log(OrbitControls);
 
 const aspect = window.innerWidth / window.innerHeight;
 
@@ -162,22 +165,28 @@ scene.add(camera2);
 const helper = new THREE.CameraHelper(camera);
 scene.add(helper);
 
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+
 const animate = () => {
   setTimeout(() => {
     requestAnimationFrame(animate);
 
-    let vector = camera.getWorldDirection(new THREE.Vector3());
-    let theta = Math.atan2(vector.x, vector.z);
-    theta *= 180 / Math.PI;
-    console.log("theta is " + theta);
+    // let vector = camera.getWorldDirection(new THREE.Vector3());
+    // let theta = Math.atan2(vector.x, vector.z);
+    // theta *= 180 / Math.PI;
+    // console.log("theta is " + theta);
 
-    camera.lookAt(cube.position);
+    // camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 4;
+    // camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 4;
+    // camera.position.y = cursor.y * 5;
+    // camera.lookAt(cube.position);
 
-    camera.position.x = Math.sin(cursor.x * 10) * 4;
-    camera.position.z = Math.cos(cursor.x * 10) * 4;
+    // if u r doing damping dont forget to update controls on each frame
+    controls.update();
 
     renderer.render(scene, camera);
-  }, 1000 / 10);
+  }, 1);
   // cube.rotation.y = elapsedTime;
 };
 animate();
