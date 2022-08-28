@@ -9,6 +9,10 @@
 //   y: 0,
 // };
 
+// window.addEventListener("dblclick", () => {
+//   console.log("double click");
+// });
+
 // window.addEventListener("resize", () => {
 //   camera.aspect = window.innerWidth / window.innerHeight;
 //   camera.updateProjectionMatrix();
@@ -122,6 +126,13 @@ const sizes = {
 };
 let aspectRatio = sizes.width / sizes.height;
 
+window.addEventListener("dblclick", () => {
+  if (!document.fullscreenElement) {
+    canvas.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
 window.addEventListener("resize", () => {
   sizes.width = window.innerWidth;
   sizes.height = window.innerHeight;
@@ -131,19 +142,20 @@ window.addEventListener("resize", () => {
   persCamera.updateProjectionMatrix();
 
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-// const cursor = {
-//   x: 0,
-//   y: 0,
-// };
+const cursor = {
+  x: 0,
+  y: 0,
+};
 
-// window.addEventListener("mousemove", (event) => {
-//   cursor.x = event.clientX / sizes.width - 0.5;
-//   cursor.y = -(event.clientY / sizes.height - 0.5);
-//   console.log("event.clientY = ", event.clientY);
-//   console.log("cursor.Y = ", cursor.y);
-// });
+window.addEventListener("mousemove", (event) => {
+  cursor.x = event.clientX / sizes.width - 0.5;
+  cursor.y = -(event.clientY / sizes.height - 0.5);
+  // console.log("event.clientY = ", event.clientY);
+  // console.log("cursor.Y = ", cursor.y);
+});
 
 const fov = 75;
 // console.log(sizes.width, window.innerWidth);
