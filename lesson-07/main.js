@@ -90,7 +90,6 @@
 // animate();
 
 import * as THREE from "three";
-import { createUnparsedSourceFile } from "typescript";
 import { OrbitControls } from "./node_modules/three/examples/jsm/controls/OrbitControls.js";
 
 // console.log(OrbitControls);
