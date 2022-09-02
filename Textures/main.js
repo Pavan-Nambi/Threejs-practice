@@ -3,14 +3,21 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three";
 
-// const image = new Image();
-// const texture = new THREE.Texture(image);
-// image.onload = () => {
+// const img = new Image();
+// const texture = new THREE.Texture(img);
+// img.onload = () => {
 //   texture.needsUpdate = true;
-//   // console.log(texture);
 // };
-// // image.src = "./textures/door/color.jpg";
-// image.src = "./textures/cat.webp";
+// img.src = "./static/Wood.jpg";
+
+const image = new Image();
+const texture = new THREE.Texture(image);
+image.onload = () => {
+  texture.needsUpdate = true;
+  // console.log(texture);
+};
+// image.src = "./textures/door/color.jpg";
+image.src = "./static/textures/cat.webp";
 const loadingManager = new THREE.LoadingManager();
 
 const textureloader = new TextureLoader(loadingManager);
@@ -34,7 +41,7 @@ const scene = new THREE.Scene();
 // const geometry = new THREE.SphereBufferGeometry(1, 32, 32);
 const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
 
-const material = new THREE.MeshBasicMaterial({ map: catTexture });
+const material = new THREE.MeshBasicMaterial({ map: texture });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
