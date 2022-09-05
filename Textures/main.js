@@ -10,18 +10,18 @@ import { TextureLoader } from "three";
 // };
 // img.src = "./static/Wood.jpg";
 
-const image = new Image();
-const texture = new THREE.Texture(image);
-image.onload = () => {
-  texture.needsUpdate = true;
-  // console.log(texture);
-};
-// image.src = "./textures/door/color.jpg";
-image.src = "./static/textures/cat.webp";
+// const image = new Image();
+// const texture = new THREE.Texture(image);
+// image.onload = () => {
+//   texture.needsUpdate = true;
+//   // console.log(texture);
+// };
+// // image.src = "./textures/door/color.jpg";
+// image.src = "./static/textures/cat.webp";
 const loadingManager = new THREE.LoadingManager();
 
 const textureloader = new TextureLoader(loadingManager);
-const catTexture = textureloader.load("./textures/cat.webp");
+const catTexture = textureloader.load("./public/cat.jpg");
 
 catTexture.repeat.set(2, 2);
 catTexture.wrapS = THREE.RepeatWrapping;
@@ -30,6 +30,7 @@ catTexture.wrapT = THREE.RepeatWrapping;
 catTexture.offset.set(0.5, 0.5);
 
 catTexture.rotation = Math.PI / 4;
+catTexture.center.set(0.5, 0.5);
 
 const canvas = document.querySelector("canvas.webgl");
 
@@ -41,7 +42,7 @@ const scene = new THREE.Scene();
 // const geometry = new THREE.SphereBufferGeometry(1, 32, 32);
 const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
 
-const material = new THREE.MeshBasicMaterial({ map: texture });
+const material = new THREE.MeshBasicMaterial({ map: catTexture });
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 
