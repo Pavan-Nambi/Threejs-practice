@@ -32,6 +32,11 @@ catTexture.offset.set(0.5, 0.5);
 catTexture.rotation = Math.PI / 4;
 catTexture.center.set(0.5, 0.5);
 
+catTexture.minFilter = THREE.NearestFilter;
+// use magFilter to remove the blur effect
+// nearest filters are better for performance and frame rate
+// catTexture.magFilter = THREE.NearestFilter;
+
 const canvas = document.querySelector("canvas.webgl");
 
 const scene = new THREE.Scene();
